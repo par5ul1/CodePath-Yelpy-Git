@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
 
     /*------ SIGN UP AND LOG IN FUNCTIONALITY  ------*/
     
-    // ––––– LAB 5 TODO: SIGN UP FUNCTIONALITY
+    // ––––– LAB 5 TODO: SIGN UP FUNCTIONALITY
     @IBAction func onSignUp(_ sender: Any) {
         // Sign up user
         // Check text field inputs
@@ -58,20 +58,20 @@ class LoginViewController: UIViewController {
                 }
                 
             }
-            
+                 
         }
         else{
             // this is mentioned as display empty error!
             displayError()
         }
-        
+
         
         
         
     }
     
     
-    // ––––– LAB 5 TODO: LOGIN FUNCTIONALITY
+    // ––––– LAB 5 TODO: LOGIN FUNCTIONALITY
     @IBAction func onLogin(_ sender: Any) {
         // Login user
         if !usernameAndPasswordNotEmpty()
@@ -89,8 +89,9 @@ class LoginViewController: UIViewController {
                 else{
                     print ("User \(username) Logged in Sucessfully!")
                     NotificationCenter.default.post(name: NSNotification.Name("login"), object: nil)
-                    
+
                 }
+                
             }
         }
         else{
@@ -146,6 +147,5 @@ class LoginViewController: UIViewController {
     
     
 }
-
 
 
