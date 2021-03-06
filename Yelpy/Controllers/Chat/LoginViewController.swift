@@ -74,8 +74,28 @@ class LoginViewController: UIViewController {
     // ––––– LAB 5 TODO: LOGIN FUNCTIONALITY
     @IBAction func onLogin(_ sender: Any) {
         // Login user
-    
-        
+        if !usernameAndPasswordNotEmpty()
+        {
+            let username = usernameTextField.text ?? ""
+            let password = passwordTextField.text ?? ""
+            
+            PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
+                
+                if let error = error{
+                    print("User log in failed \(error.localizedDescription)")
+                    self.displayLoginError(error: error)
+                }
+                
+                else{
+                    print ("User \(username) Logged in Sucessfully!")
+                    NotificationCenter.default.post(name: NSNotification.Name("login"), object: nil)
+                    
+                }
+            }
+        }
+        else{
+            displayError()
+        }
     }
     
     
