@@ -29,14 +29,42 @@ class LoginViewController: UIViewController {
     @IBAction func onSignUp(_ sender: Any) {
         // Sign up user
         // Check text field inputs
-       
-            // initialize a user object
-          
+        
+        if !usernameAndPasswordNotEmpty()
+        {
+            // initialize a user object using the pf user
+            let newUser = PFUser()
             
-            // set user properties
-         
+            // set user properties  using the text field from the UITextField
+            
+            newUser.username = usernameTextField.text
+            newUser.password = passwordTextField.text
             
             // call sign up function on the object
+            newUser.signUpInBackground { (success: Bool, error: Error?) in
+                if let error = error{
+                    // error handling output
+                    print(error.localizedDescription)
+                    // print out the error in the console
+                    self.displaySignupError(error: error)
+                }
+                // if there is no error in the sign up process
+                // \ is a way to escape and add variables inside print statemenets !
+                else {
+                    print ("User \(newUser.username!) Registered Sucessfully!")
+                    // call the notification to see the login to user
+                    NotificationCenter.default.post(name: NSNotification.Name("login"), object: nil)
+                    
+                }
+                
+            }
+            
+        }
+        else{
+            // this is mentioned as display empty error!
+            displayError()
+        }
+        
         
         
         
