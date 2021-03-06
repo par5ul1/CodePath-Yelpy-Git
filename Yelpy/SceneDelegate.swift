@@ -24,50 +24,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     
         // Add event listener for when user logs out
-        NotificationCenter.default.addObserver(forName: Notification.Name("login"), object: nil, queue: OperationQueue.main) { (Notification) in
-            print("Logout notification received")
-            // Load and show Login view controller
-            self.login()
-        }
+
         
         // Add event listener for when user logs out
-        NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
-            print("Logout notification received")
-            // Load and show Login view controller
-            self.logOut()
-        }
+
         
         // Add User persistance across app restarts
-        if PFUser.current() != nil {
-            login()
-        }
+
 
         guard let _ = (scene as? UIWindowScene) else { return }
     }
     
     
     // ––––– Lab 5 TODO: LOGIN USER
-    func login() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        // view controller currently being set in Storyboard as default will be overridden
-        window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBar")
-    }
+
     
     // ––––– Lab 5 TODO: LOGOUT USER
-    func logOut() {
-        PFUser.logOutInBackground(block: { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("Successful Logout")
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let loginViewController = storyboard.instantiateViewController(withIdentifier: "Login")
-                self.window?.rootViewController = loginViewController
-                
-            }
-            
-        })
-    }
+
     
     
     
